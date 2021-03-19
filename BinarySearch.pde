@@ -139,10 +139,7 @@ function goodBinarySearch(array, sValue, ARG_start, ARG_len){
     len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
   }
   if (array[start+len|0] !== sValue) {
-    // remove this if-statement to return the next closest
-    // element going downwards from the searched-for value
-    // OR 0 if the value is less than all values in the
-    // array. https://stackoverflow.com/a/44981570/5601591
+    
     return -1 - start - len |0;
   }
   return start + len |0;
