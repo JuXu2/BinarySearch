@@ -1,102 +1,149 @@
-private Item[] store = 
-{
-  new Item(184, 14), 
-  new Item(196, 60), 
-  new Item(206, 31), 
-  new Item(2370, 65), 
-  new Item(7282, 73), 
-  new Item(8303, 90), 
-  new Item(12328, 63), 
-  new Item(12705, 14), 
-  new Item(13066, 8), 
-  new Item(14088, 92), 
-  new Item(15320, 82), 
-  new Item(15814, 60), 
-  new Item(15917, 51), 
-  new Item(17911, 96), 
-  new Item(18061, 3), 
-  new Item(18410, 56), 
-  new Item(18465, 27), 
-  new Item(18618, 64), 
-  new Item(18871, 69), 
-  new Item(19967, 45)
-};                             
-public int linearSearch(int catNumToFind)
-{
-  //complete this method
-  return -1;
-}
-public int recursiveLinearSearch(int catNumToFind, int startIndex)
-{
-  //complete this method
-  return -1;
-}
-public int binarySearch(int catNumToFind)
-{
-  //complete this method    
-  return -1;
-}
-public int recursiveBinarySearch(int catNumToFind, int nLow, int nHigh)
-{
-  //complete this method    
-  return -1;
-}
-public void setup()
-{
-  int[] tests = {0, 183, 184, 2370, 15320, 19967, 19968};
-  System.out.println();
-  System.out.println("Testing Non-Recursive Linear Search");
-  System.out.println("=====================");
-  for (int i = 0; i < tests.length; i++)
-  {
+const sArr = [0,4,5,6,9,13,14,21,27,44];
+const s = sArr[Math.random() * sArr.length | 0];
+document.body.innerHTML = s+" is at "+goodBinarySearch(sArr, s);
 
-    if (linearSearch(tests[i]) != -1)
-      System.out.println("Catalog #"+tests[i]+" has "+linearSearch(tests[i]) + " in stock");
-    else
-      System.out.println("Catalog #"+tests[i]+" not found");
+function goodBinarySearch(array, sValue, ARG_start, ARG_len){
+  // Range of [start, start+len): only start is inclusive. It works
+  // similarly to "...".substr(start, len).indexOf(sValue)
+  // `void 0` is shorthand for `undefined`
+  var start = (ARG_start === void 0 ? 0 : ARG_start) | 0;
+  var len = (ARG_len === void 0 ? (array.length|0) - start : ARG_len) |0;
+  len = len - 1 |0;
+  
+  if (len & 0x80000000) {
+    const nCB = len & 0x80000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
   }
-  System.out.println();
-  System.out.println("Testing Recursive Linear Search");
-  System.out.println("=====================");
-  for (int i = 0; i < tests.length; i++)
-  {
-
-    if (recursiveLinearSearch(tests[i],0) != -1)
-      System.out.println("Catalog #"+tests[i]+" has "+recursiveLinearSearch(tests[i],0) + " in stock");
-    else
-      System.out.println("Catalog #"+tests[i]+" not found");
+  if (len & 0x40000000) {
+    const nCB = len & 0xc0000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
   }
-  System.out.println();
-  System.out.println("Testing Non-Recursive Binary Search");
-  System.out.println("===================================");
-  for (int i = 0; i < tests.length; i++)
-  {
-
-    if (binarySearch(tests[i]) != -1)
-      System.out.println("Catalog #"+tests[i]+" has "+binarySearch(tests[i]) + " in stock");
-    else
-      System.out.println("Catalog #"+tests[i]+" not found");
+  if (len & 0x20000000) {
+    const nCB = len & 0xe0000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
   }
-  System.out.println();
-  System.out.println("Testing Recursive Binary Search");
-  System.out.println("===============================");
-  for (int i = 0; i < tests.length; i++)
-  {
-
-    if (recursiveBinarySearch(tests[i], 0, store.length - 1) != -1)
-      System.out.println("Catalog #"+tests[i]+" has "+recursiveBinarySearch(tests[i], 0, store.length - 1) + " in stock");
-    else
-      System.out.println("Catalog #"+tests[i]+" not found");
+  if (len & 0x10000000) {
+    const nCB = len & 0xf0000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
   }
+  if (len & 0x8000000) {
+    const nCB = len & 0xf8000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x4000000) {
+    const nCB = len & 0xfc000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x2000000) {
+    const nCB = len & 0xfe000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x1000000) {
+    const nCB = len & 0xff000000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x800000) {
+    const nCB = len & 0xff800000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x400000) {
+    const nCB = len & 0xffc00000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x200000) {
+    const nCB = len & 0xffe00000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x100000) {
+    const nCB = len & 0xfff00000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x80000) {
+    const nCB = len & 0xfff80000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x40000) {
+    const nCB = len & 0xfffc0000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x20000) {
+    const nCB = len & 0xfffe0000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x10000) {
+    const nCB = len & 0xffff0000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x8000) {
+    const nCB = len & 0xffff8000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x4000) {
+    const nCB = len & 0xffffc000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x2000) {
+    const nCB = len & 0xffffe000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x1000) {
+    const nCB = len & 0xfffff000;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x800) {
+    const nCB = len & 0xfffff800;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x400) {
+    const nCB = len & 0xfffffc00;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x200) {
+    const nCB = len & 0xfffffe00;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x100) {
+    const nCB = len & 0xffffff00;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x80) {
+    const nCB = len & 0xffffff80;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x40) {
+    const nCB = len & 0xffffffc0;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x20) {
+    const nCB = len & 0xffffffe0;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x10) {
+    const nCB = len & 0xfffffff0;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x8) {
+    const nCB = len & 0xfffffff8;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x4) {
+    const nCB = len & 0xfffffffc;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x2) {
+    const nCB = len & 0xfffffffe;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (len & 0x1) {
+    const nCB = len & 0xffffffff;
+    len ^= (len ^ (nCB-1)) & ((array[start+nCB|0] <= sValue |0) - 1 >>>0);
+  }
+  if (array[start+len|0] !== sValue) {
+    // remove this if-statement to return the next closest
+    // element going downwards from the searched-for value
+    // OR 0 if the value is less than all values in the
+    // array. https://stackoverflow.com/a/44981570/5601591
+    return -1 - start - len |0;
+  }
+  return start + len |0;
 }
-
-public void draw()
-{
-  //empty!
-}
-
-
-
-
-
-
